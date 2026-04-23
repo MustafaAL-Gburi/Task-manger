@@ -14,17 +14,17 @@
                     <div class="card-body">
                         <div class="mb-3">
                             <label class="form-label fw-bold">Task name:</label>
-                            <p class="text-muted">{{ $task->title }}</p>
+                            <p class="text">{{ $task->title }}</p>
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label fw-bold">Task description:</label>
-                            <p class="text-muted">{{ $task->description }}</p>
+                            <p class="text">{{ $task->description }}</p>
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label fw-bold">Task priority:</label>
-                            <p class="text-muted">{{ $task->priority }}</p>
+                            <p class="text">{{ $task->priority }}</p>
                         </div>
 
                         <div class="d-flex gap-2">

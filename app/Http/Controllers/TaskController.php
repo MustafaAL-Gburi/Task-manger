@@ -46,6 +46,7 @@ class TaskController extends Controller
     {
         // Find the task by ID
         $task = Task::findOrFail($id);
+        // dd($task);
         // Check if the request expects a JSON response (e.g., for API requests)
         if (request()->expectsJson()) {
             return response()->json($task, 200);
