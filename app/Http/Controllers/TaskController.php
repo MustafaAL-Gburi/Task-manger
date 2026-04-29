@@ -27,20 +27,20 @@ class TaskController extends Controller
     {
         // Validate the incoming request data
         $validatedData = $request->validate([
-            'title' => 'required|string|max:255',
+            'title' => 'required|string|max:50',
             'description' => 'required|string',
-            'priority' => 'integer|min:0',
+            'priority' => 'required|integer|min:1|max:10',
         ]);
         // Create a new task using the validated data
         $task = Task::create($validatedData);
 
         // Return a response with the created task
-        if ($request->expectsJson()) {
-            return response()->json($task, 201);
-        }
+        // if ($request->expectsJson()) {
+        return response()->json($task, 201);
+        // }
         // Redirect to the tasks index page with a success message
-        return redirect()->route('tasks.index')
-            ->with('success', 'Task created successfully!');
+        //     return redirect()->route('tasks.index')
+        //         ->with('success', 'Task created successfully!');
     }
     public function show($id)
     {
@@ -65,9 +65,9 @@ class TaskController extends Controller
     {
         // Validate the incoming request data
         $validatedData = $request->validate([
-            'title' => 'required|string|max:255',
+            'title' => 'required|string|max:50',
             'description' => 'required|string',
-            'priority' => 'integer|min:0',
+            'priority' => 'required|integer|min:1|max:10',
         ]);
         // Find the task by ID and update it with the validated data
         $task = Task::findOrFail($id);

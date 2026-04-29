@@ -15,7 +15,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
 
-                <a class="navbar-brand" href="{{ route('tasks.index') }}">Task Manager</a>
+                <a class="navbar-brand" href="{{ route('welcome') }}">Task Manager</a>
 
                 <!-- button -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -25,19 +25,29 @@
                 <!--list of links -->
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
+                        @auth
+                            <li class="nav-item">
+                                <a class="nav-link active" href="{{ route('tasks.index') }}">Home</a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link active" href="{{ route('tasks.index') }}">Home</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('tasks.create') }}">Add Task</a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('tasks.create') }}">Add Task</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('tasks.index') }}">Contact</a>
-                        </li>
-
+                            <li class="nav-item">
+                                <form method="POST" action="{{ route('logout') }}" class="d-inline">
+                                    @csrf
+                                    <button type="submit" class="btn btn-link nav-link text-white">Logout</button>
+                                </form>
+                            </li>
+                        @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('register') }}">Register</a>
+                            </li>
+                        @endauth
                     </ul>
                 </div>
 

@@ -1,0 +1,57 @@
+@extends('layouts.app')
+
+@section('content')
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card bg-dark text-white shadow-lg rounded-4">
+                    <div class="card-header fs-4">
+                        Create a New Account
+                    </div>
+                    <div class="card-body">
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul class="mb-0">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
+                        <form method="POST" action="{{ route('register') }}">
+                            @csrf
+
+                            <div class="mb-3">
+                                <label for="name" class="form-label text-white">Name</label>
+                                <input type="text" name="name" id="name" class="form-control"
+                                    value="{{ old('name') }}" required autofocus>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="email" class="form-label text-white">Email address</label>
+                                <input type="email" name="email" id="email" class="form-control"
+                                    value="{{ old('email') }}" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="password" class="form-label text-white">Password</label>
+                                <input type="password" name="password" id="password" class="form-control" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="password_confirmation" class="form-label text-white">Confirm Password</label>
+                                <input type="password" name="password_confirmation" id="password_confirmation"
+                                    class="form-control" required>
+                            </div>
+
+                            <button type="submit" class="btn btn-warning">Register</button>
+                            <a href="{{ route('login') }}" class="btn btn-link text-white">Already have an account?
+                                Login</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
