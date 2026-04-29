@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\store;
-use Illuminate\Http\Request;
+use App\Models\User;
 use App\Models\Task;
+use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
     public function index()
     {
-        // Retrieve all tasks from the database, ordered by creation date (latest first)
-        $tasks = Task::latest()->get();
+        //  Authenticated tasks from the database, ordered by creation date (latest first)
+        $tasks = Task::where('user_id', Auth::id())->latest()->get();
         //dispaly the list of tasks
         return view('tasks.index', compact('tasks'));
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Task;
 use App\Http\Requests\store;
+use App\Models\User;
 
 class TaskApiController extends Controller
 {
@@ -29,10 +30,20 @@ class TaskApiController extends Controller
      */
     public function show(string $id)
     {
-        $task = Task::findOrFail($id);
+        $task = Task::where('user_id', $id)->first();
+        // $task = Task::findOrFail($id);
         return response()->json($task, 200);
     }
-
+    public function getUser(string $id)
+    {
+        // ddasks();
+        // return response()->json($task, 200);($id);
+        // $task = Task::findOrFail($id)->user;
+        // $task = User::findOrFail($id)->user;
+        $task = User::findOrFail($id)->tasks;
+        // return response()->json(User::findOrFail($id)->tasks, 200);
+        return response()->json($task, 200);
+    }
     /**
      * Update the specified resource in storage.
      */

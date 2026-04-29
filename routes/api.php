@@ -18,4 +18,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 // Route::post('tasks', [TaskController::class, 'store']);
+Route::get('tasks/{id}/user', [TaskApiController::class, 'getUser']);
 Route::apiResource('tasks', TaskApiController::class);
