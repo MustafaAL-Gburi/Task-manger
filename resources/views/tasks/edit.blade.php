@@ -40,9 +40,14 @@
 
                             <!-- Update Task  -->
                             <div class="d-grid">
-                                <button class="btn btn-primary w-100" type="submit">
+                                <button class="btn btn-success w-100" type="submit">
                                     <span class="spinner-border spinner-border-sm d-none"></span>
                                     Update Task
+                                </button>
+                                <br />
+                                <button class="btn btn-secondary w-100" href="{{ route('tasks.index') }}">
+                                    <span class="spinner-border spinner-border-sm d-none"></span>
+                                    Back to List
                                 </button>
                             </div>
                         </form>
