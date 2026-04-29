@@ -12,7 +12,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('tasks', function (Blueprint $table) {
-            $table->string('title')->length(200)->nullable(false)->change();
+            $table->foreignId('user_id')->constrained('users')->change();
         });
     }
 
@@ -23,7 +23,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('tasks', function (Blueprint $table) {
-            $table->string('title')->length(200)->nullable(true)->change();
+            $table->foreignId('user_id')->constrained('users')->change();
         });
     }
 };
