@@ -23,8 +23,10 @@ class TaskController extends Controller
     }
     public function store(store $request)
     {
-        // Create a new task using the validated data
-        $task = Task::create($request->validated(), $request->messages());
+        // Create a new task using the validated data and attach it to the current user
+        $task = Task::create(array_merge($request->validated(), [
+            'user_id' => Auth::id(),
+        ]));
 
         // Redirect to the tasks index page with a success message
         return redirect()->route('tasks.index')
@@ -32,8 +34,8 @@ class TaskController extends Controller
     }
     public function show($id)
     {
-        // Find the task by ID
-        $task = Task::findOrFail($id);
+        // Find the task by ID along with its owner
+        $task = Task::with('user')->findOrFail($id);
         // dd($task);
         // Display the task details
         return view('tasks.show', compact('task'));

@@ -36,12 +36,7 @@ class TaskApiController extends Controller
     }
     public function getUser(string $id)
     {
-        // ddasks();
-        // return response()->json($task, 200);($id);
-        // $task = Task::findOrFail($id)->user;
-        // $task = User::findOrFail($id)->user;
         $task = User::findOrFail($id)->tasks;
-        // return response()->json(User::findOrFail($id)->tasks, 200);
         return response()->json($task, 200);
     }
     /**

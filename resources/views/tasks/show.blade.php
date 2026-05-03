@@ -27,6 +27,11 @@
                             <p class="text">{{ $task->priority }}</p>
                         </div>
 
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Task owner:</label>
+                            <p class="text">{{ optional($task->user)->name ?? 'Unknown' }}</p>
+                        </div>
+
                         <div class="d-flex gap-2">
                             <a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-warning">Edit</a>
                             <a href="{{ route('tasks.index') }}" class="btn btn-secondary">Back to List</a>
