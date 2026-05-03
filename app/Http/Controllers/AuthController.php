@@ -50,8 +50,8 @@ class AuthController extends Controller
                 'email' => 'The provided credentials do not match our records.',
             ])->withInput($request->only('email'));
         }
-        $user = User::where('email', $credentials['email'])->first();
-        $token = $user->createToken('auth_token')->plainTextToken;
+        // $user = User::where('email', $credentials['email'])->first();
+        // $token = $user->createToken('auth_token')->plainTextToken;
         $request->session()->regenerate();
 
         return redirect()->intended(route('tasks.index'));
@@ -59,11 +59,13 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
-        Auth::logout();
+        // if ($request->user()) {
+        //     $request->user()->tokens()->delete();
+        // }
 
+        Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        $request->user()->tokens()->delete();
         return redirect()->route('login');
     }
 }

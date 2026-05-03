@@ -26,7 +26,7 @@ Route::middleware('guest')->group(function () {
     Route::post('/login', [AuthController::class, 'login']);
 });
 
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
 Route::middleware('auth')->group(function () {
     Route::get('/home', function () {
@@ -40,4 +40,4 @@ Route::middleware('auth')->group(function () {
     Route::get('/tasks/{id}/edit', [TaskController::class, 'edit'])->name('tasks.edit');
     Route::put('/tasks/{id}', [TaskController::class, 'update'])->name('tasks.update');
     Route::delete('/tasks/{id}', [TaskController::class, 'destroy'])->name('tasks.destroy');
-})->middleware('auth:sanctum');
+});
